@@ -1,88 +1,47 @@
-# Jogo de Trader de Criptomoedas
+# README - Jogo Python com Design Patterns
 
-## Descrição do Jogo
+## O que foi feito
 
-Este é um jogo interativo de análise de tendências em que você é um trader de criptomoedas. O objetivo é analisar gráficos gerados aleatoriamente e decidir se o valor de uma criptomoeda vai **subir** ou **descer**. O jogo se adapta a cada rodada, tornando-se mais desafiador com a análise de médias ponderadas.
+Este projeto é um jogo simples que simula o mercado de criptomoedas. O código foi aprimorado com a integração de cinco padrões de design para melhorar a estrutura, escalabilidade e manutenção.
 
-### Como Jogar
+## Como executar
 
-1. Clique em **Começar** para iniciar o jogo.
-2. Um gráfico será exibido com os preços de uma criptomoeda selecionada aleatoriamente.
-3. Analise o gráfico e escolha se o preço vai **Subir** ou **Descer**.
-4. Se acertar:
-   - O valor da criptomoeda será adicionado à sua carteira.
-5. Se errar:
-   - O valor será subtraído da carteira.
-   - Caso o valor da carteira seja insuficiente, o jogo termina.
+1. Certifique-se de ter o Python instalado (versão 3.8 ou superior).
+2. Instale as dependências necessárias com:
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. Execute o arquivo `main.py` para iniciar o jogo:
+   ```bash
+   python main.py
+   ```
 
----
+## Padrões de Projeto Utilizados
 
-## Configuração do Projeto
+### Singleton
+**Arquivo:** `chart.py`
+- A classe `Chart` foi implementada como um Singleton, garantindo que apenas uma instância seja criada e usada em todo o projeto.
+- **Benefício:** Evita conflitos ao trabalhar com múltiplos gráficos.
 
-### Dependências
+### Factory
+**Arquivo:** `crypto.py`
+- A `CryptoFactory` foi implementada para criar objetos `Crypto` centralizadamente.
+- **Benefício:** Simplifica a criação de instâncias e melhora a manutenção.
 
-Certifique-se de instalar as bibliotecas necessárias:
+### Observer
+**Arquivo:** `crypto.py`
+- A classe `Crypto` notifica todos os observadores registrados sempre que seu valor muda.
+- **Benefício:** Facilita a atualização de gráficos e outros componentes dependentes de dados.
 
-```bash
-pip install customtkinter matplotlib colorama
-```
+### Strategy
+**Arquivo:** `crypto.py`
+- Diferentes estratégias de cálculo de valores foram implementadas, como `RandomPricingStrategy` e `StablePricingStrategy`.
+- **Benefício:** Permite flexibilidade e fácil troca de estratégias sem alterar a lógica principal.
 
-#### Estrutura de Arquivos
-.
-├── main.py           # Arquivo principal do jogo
-├── game.py           # Lógica principal e interface do jogo
-├── player.py         # Gerenciamento da carteira do jogador
-├── crypto.py         # Configuração das criptomoedas
-├── chart.py          # Geração de gráficos e lógica de tendências
-└── README.md         # Arquivo de documentação
+### Command
+**Arquivo:** `game.py`
+- Comandos como `BuyCommand`, `SellCommand` e `UpdateMarketCommand` foram criados para encapsular ações específicas.
+- **Benefício:** Facilita a adição de novas ações sem modificar o núcleo do jogo.
 
-
-#### Padrões de Design Utilizados
-
-1. Strategy
-O padrão Strategy é utilizado para implementar a lógica de subida ou descida dos preços. A escolha do jogador é comparada à movimentação determinada pelo gráfico.
-
-2. Factory
-O padrão Factory é aplicado na criação das criptomoedas. A classe CryptoFactory é responsável por gerar as instâncias de criptomoedas utilizadas no jogo.
-
-3. Observer
-O padrão Observer é aplicado para atualizar a interface do jogo. Quando o jogador faz uma escolha ou uma nova criptomoeda é sorteada, os gráficos e a carteira são atualizados dinamicamente.
-
-### Fluxograma do Jogo
-
-O fluxo do jogo pode ser representado pelo seguinte diagrama:
-
-+----------------------+
-| Início do Jogo       |
-+----------+-----------+
-           |
-           v
-+----------------------+            +----------------------+
-| Sorteia uma Criptomoeda |---->----| Gera o Gráfico       |
-+----------+-----------+            +----------+-----------+
-           |                                    |
-           | Escolha do Jogador                |
-           | Subir / Descer                    |
-           v                                    v
-+----------------------+            +----------------------+
-| Determina Movimento   |<--+---<---| Analisa o Gráfico    |
-+----------+-----------+            +----------+-----------+
-           |                                    |
-           | Acertou                            | Errou
-           v                                    v
-+----------------------+            +----------------------+
-| Atualiza Carteira     |            | Subtrai ou Finaliza |
-+----------+-----------+            +----------+-----------+
-           |                                    |
-           +------------------------------------+
-                       Próxima Rodada
-
-
-### Como Executar o Jogo
-
-1. Certifique-se de que todos os arquivos necessários estão no mesmo diretório.
-2. Execute o arquivo principal do jogo:
-```bash
-python main.py
-```
-3. Divirta-se jogando!
+## Autor(es)
+- Desenvolvido por [Seu Nome].
