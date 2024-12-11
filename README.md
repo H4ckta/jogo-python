@@ -42,3 +42,6 @@ Este projeto é um jogo simples que simula o mercado de criptomoedas. O código 
 **Arquivo:** `game.py`
 - Comandos como `BuyCommand`, `SellCommand` e `UpdateMarketCommand` foram criados para encapsular ações específicas.
 - **Benefício:** Facilita a adição de novas ações sem modificar o núcleo do jogo.
+
+## Autor(es)
+- Desenvolvido por Matheus Henrique Barbosa, e João Gabriel Barbosa.
